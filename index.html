@@ -1,13 +1,16 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ifeanyi Nnamani Emmanuel | SMORK 💫 Portfolio CMS</title>
+  <title>Ifeanyi Nnamani Emmanuel | SMORK ♿💫 Portfolio CMS</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    body { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }
+    body { font-family: sans-serif; background-color: #0f172a; color: white; }
+
+    /* Glass effect */
     .glass {
       background: rgba(255,255,255,0.05);
       backdrop-filter: blur(12px);
@@ -17,11 +20,13 @@
       transition: transform 0.3s ease, background 0.3s ease;
     }
     .glass:hover { transform: translateY(-4px); background: rgba(255,255,255,0.08); }
+
+    /* Toast */
     .toast {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      background: #111827;
+      background: #1e40af;
       color: #f9fafb;
       padding: 1rem 1.5rem;
       border-radius: 0.5rem;
@@ -31,37 +36,38 @@
       font-weight: 500;
       letter-spacing: 0.5px;
     }
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .text-blue-accent { color: #3B82F6; } /* Main blue accent */
-    .hover-blue { transition: 0.3s; }
-    .hover-blue:hover { color: #60A5FA !important; }
-    .glass-blue:hover { background: rgba(59,130,246,0.1); }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* Cursor for clickable images */
+    .cursor-pointer { cursor: pointer; }
   </style>
 </head>
 
-<body class="bg-gray-900 text-white font-sans antialiased">
+<body>
 
 <!-- HERO -->
 <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
-  <img src="assets/hero.jpg" class="w-36 h-36 rounded-full mb-4 object-cover border-2 border-gray-700 shadow-2xl">
-  <h1 class="text-5xl md:text-6xl font-extrabold mb-2 text-blue-accent">Ifeanyi Nnamani Emmanuel</h1>
-  <p class="text-2xl md:text-3xl mb-4 text-gray-300">aka <span class="font-bold text-blue-accent">SMORK 💫</span></p>
-  <p class="text-xl md:text-2xl mb-6 text-gray-400">Software Engineer / Frontend Developer</p>
+  <img id="heroImage" src="assets/hero.jpg" class="w-36 h-36 rounded-full mb-4 object-cover border-2 border-blue-700 shadow-2xl cursor-pointer" onclick="openHeroModal()">
+  <h1 class="text-5xl md:text-6xl font-extrabold mb-2">Ifeanyi Nnamani Emmanuel</h1>
+  <p class="text-2xl md:text-3xl mb-4 text-blue-400 font-bold">aka SMORK ♿💫</p>
+  <p class="text-xl md:text-2xl mb-6 text-gray-300">Software Engineer / Frontend Developer</p>
   <div class="flex gap-4">
-    <a href="#projects" class="glass px-6 py-3 font-medium glass-blue">VIEW WORK</a>
-    <a href="#contact" class="glass px-6 py-3 font-medium glass-blue">CONTACT</a>
+    <a href="#projects" class="glass px-6 py-3 font-medium hover:bg-blue-800">VIEW WORK</a>
+    <a href="#contact" class="glass px-6 py-3 font-medium hover:bg-blue-800">CONTACT</a>
   </div>
 </section>
 
+<!-- HERO IMAGE MODAL -->
+<div id="heroModal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
+  <span onclick="closeHeroModal()" class="absolute top-4 right-6 text-white text-3xl cursor-pointer hover:text-red-500">✖</span>
+  <img id="heroFullImage" src="assets/hero.jpg" class="max-w-full max-h-full rounded shadow-2xl">
+</div>
+
 <!-- ABOUT -->
 <section class="py-20 px-6 max-w-4xl mx-auto text-center">
-  <h2 class="text-4xl font-bold mb-6 text-blue-accent">About Me</h2>
+  <h2 class="text-4xl font-bold mb-6 text-blue-400">About Me</h2>
   <p class="mb-6 text-gray-300 leading-relaxed">
-    I build modern, responsive, and interactive web applications with a strong focus on <strong>UI/UX</strong>, performance, and polished high-end design.
-    My work represents professional craftsmanship with clean, sleek, and functional interfaces.
+    I build modern, responsive, and interactive web applications with a strong focus on <strong>UI/UX</strong>, performance, and polished high-end design. My work represents professional craftsmanship with clean, sleek, and functional interfaces.
   </p>
   <div class="flex flex-wrap justify-center gap-4">
     <span class="glass px-4 py-2 font-medium">HTML</span>
@@ -75,15 +81,15 @@
 <!-- PROJECTS -->
 <section id="projects" class="py-20 px-6 max-w-6xl mx-auto">
   <div class="flex justify-between items-center mb-6">
-    <h2 class="text-4xl font-bold text-blue-accent">Projects</h2>
-    <button id="addProjectBtn" class="glass px-4 py-2 font-medium glass-blue">Add Project</button>
+    <h2 class="text-4xl font-bold text-blue-400">Projects</h2>
+    <button id="addProjectBtn" class="glass px-4 py-2 font-medium hover:bg-blue-800">Add Project</button>
   </div>
   <div id="projectsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 </section>
 
 <!-- SKILLS -->
 <section class="py-20 px-6 max-w-4xl mx-auto text-center">
-  <h2 class="text-4xl font-bold mb-6 text-blue-accent">Skills</h2>
+  <h2 class="text-4xl font-bold mb-6 text-blue-400">Skills</h2>
   <div class="grid md:grid-cols-3 gap-6">
     <div class="glass p-4">
       <h3 class="font-bold mb-2 text-lg text-gray-200">Frontend</h3>
@@ -102,16 +108,180 @@
 
 <!-- CONTACT -->
 <section id="contact" class="py-20 px-6 max-w-4xl mx-auto text-center">
-  <h2 class="text-4xl font-bold mb-6 text-blue-accent">Contact</h2>
+  <h2 class="text-4xl font-bold mb-6 text-blue-400">Contact</h2>
   <div class="flex justify-center gap-6 text-2xl flex-wrap">
-    <a href="https://www.instagram.com/smork_frmdaeast" target="_blank" class="hover-blue"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/share/1DhHJPTRXL/" target="_blank" class="hover-blue"><i class="fab fa-facebook"></i></a>
-    <a href="https://www.linkedin.com/in/smorkfrmdaeast" target="_blank" class="hover-blue"><i class="fab fa-linkedin"></i></a>
-    <a href="https://github.com/Smorkfrmdaeast" target="_blank" class="hover-blue"><i class="fab fa-github"></i></a>
-    <a href="mailto:ifeanyinuels32@gmail.com" class="hover-blue"><i class="fas fa-envelope"></i></a>
-    <a href="https://wa.me/2349019071679" target="_blank" class="hover-blue"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.instagram.com/smork_frmdaeast" target="_blank" class="hover:text-pink-500"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/share/1DhHJPTRXL/" target="_blank" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.linkedin.com/in/smorkfrmdaeast" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/Smorkfrmdaeast" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="mailto:ifeanyinuels32@gmail.com"><i class="fas fa-envelope"></i></a>
+    <a href="https://wa.me/2349019071679" target="_blank" class="hover:text-green-500"><i class="fab fa-whatsapp"></i></a>
   </div>
 </section>
 
-<!-- MODALS + JS (same logic) -->
-<!-- ...keep everything else as-is, but make titles and highlights blue-accent... -->
+<!-- ADD PROJECT MODAL -->
+<div id="projectModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+  <div class="glass p-6 w-full max-w-md">
+    <h3 id="modalTitle" class="text-2xl mb-4 text-blue-400 font-bold">Add Project</h3>
+    <form id="projectForm" class="flex flex-col gap-3">
+      <input id="projectTitle" placeholder="Title" class="p-2 bg-gray-800 rounded">
+      <input id="projectTech" placeholder="Tech" class="p-2 bg-gray-800 rounded">
+      <input id="projectLive" placeholder="Live Link" class="p-2 bg-gray-800 rounded">
+      <input id="projectGit" placeholder="GitHub Link" class="p-2 bg-gray-800 rounded">
+      <textarea id="projectDesc" placeholder="Description" class="p-2 bg-gray-800 rounded"></textarea>
+      <div class="flex justify-end gap-2">
+        <button type="button" id="closeModal" class="glass px-3 py-1 hover:bg-blue-800">Cancel</button>
+        <button type="submit" class="glass px-3 py-1 hover:bg-blue-800">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- PROJECT DETAILS MODAL -->
+<div id="detailsModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50">
+  <div class="glass p-6 max-w-lg w-full relative">
+    <button onclick="closeDetails()" class="absolute top-2 right-3 text-xl text-gray-200 hover:text-red-500">✖</button>
+    <img id="detailsImage" class="w-full h-52 object-cover rounded mb-4">
+    <h3 id="detailsTitle" class="text-2xl font-bold mb-2 text-blue-400"></h3>
+    <p id="detailsDesc" class="mb-2 text-gray-300"></p>
+    <p id="detailsTech" class="text-sm mb-4 text-gray-400"></p>
+    <div class="flex gap-3">
+      <a id="detailsLive" target="_blank" class="glass px-3 py-1 hover:bg-blue-800">Live</a>
+      <a id="detailsGit" target="_blank" class="glass px-3 py-1 hover:bg-blue-800">GitHub</a>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast">Done</div>
+
+<script>
+const images = [
+  "assets/smork-ecommerce-app.jpg",
+  "assets/smork-tech-calculator.jpg",
+  "assets/smorks-paydom-platform.jpg",
+  "assets/unique-homes-landing-page.jpg",
+  "assets/smart-appointment-booking.jpg"
+];
+
+let projects = [
+  {
+    title: "SMORK FINTECH DASHBOARD",
+    tech: "HTML, Tailwind CSS, JavaScript",
+    live: "https://smorkfrmdaeast.github.io/fintech-dashboard/login.html",
+    github: "https://github.com/Smorkfrmdaeast/fintech-dashboard",
+    description: "A modern fintech dashboard interface featuring authentication UI, clean layout, and responsive design. Built to simulate real-world financial platforms with smooth user experience."
+  },
+  {
+    title: "SMART APPOINTMENT BOOKING PLATFORM",
+    tech: "HTML, CSS, JavaScript",
+    live: "https://smorkfrmdaeast.github.io/appointment-booking-platform/",
+    github: "https://github.com/Smorkfrmdaeast/appointment-booking-platform",
+    description: "A smart scheduling platform that allows users to book and manage appointments efficiently. Designed with a clean interface and mobile-friendly responsiveness."
+  },
+  {
+    title: "SMORK E-COMMERCE STORE",
+    tech: "HTML, CSS, JavaScript",
+    live: "https://smorkfrmdaeast.github.io/smork-ecommerce-store/",
+    github: "https://github.com/Smorkfrmdaeast/smork-ecommerce-store",
+    description: "An interactive e-commerce web application with product listings, cart system, and responsive UI. Focused on delivering a smooth shopping experience."
+  },
+  {
+    title: "UNIQUE HOMES LANDING PAGE",
+    tech: "HTML, Tailwind CSS",
+    live: "https://smorkfrmdaeast.github.io/unique-homes-website/",
+    github: "https://github.com/Smorkfrmdaeast/unique-homes-website",
+    description: "A modern landing page for a perfume and air freshener diffuser brand, showcasing products, features, and premium UI design. Fully responsive with smooth scrolling and engaging layout."
+  },
+  {
+    title: "SMORK TECH CALCULATOR",
+    tech: "HTML, CSS, JavaScript",
+    live: "https://smorkfrmdaeast.github.io/smorks-tech-calculator/",
+    github: "https://github.com/Smorkfrmdaeast/smorks-tech-calculator",
+    description: "A functional calculator web app with a clean UI and responsive design, built to handle real-time calculations efficiently."
+  }
+];
+
+let editIndex = null;
+const container = document.getElementById('projectsContainer');
+const modal = document.getElementById('projectModal');
+const form = document.getElementById('projectForm');
+const toast = document.getElementById('toast');
+const addProjectBtn = document.getElementById('addProjectBtn');
+const closeModal = document.getElementById('closeModal');
+
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),2000);
+}
+
+function renderProjects(){
+  container.innerHTML = projects.map((p,i)=>`
+    <div class="glass p-4 hover:scale-105 transition cursor-pointer" onclick="openDetails(${i})">
+      <img src="${images[i]}" class="w-full h-40 object-cover rounded mb-3">
+      <h3 class="font-bold text-xl text-blue-400">${p.title}</h3>
+      <p class="text-gray-300">${p.description.substring(0,60)}...</p>
+    </div>
+  `).join('');
+}
+
+addProjectBtn.onclick = ()=>{
+  editIndex=null;
+  form.reset();
+  modal.classList.remove('hidden');
+};
+
+closeModal.onclick = ()=> modal.classList.add('hidden');
+
+form.onsubmit = (e)=>{
+  e.preventDefault();
+  let data = {
+    title: projectTitle.value,
+    tech: projectTech.value,
+    live: projectLive.value,
+    github: projectGit.value,
+    description: projectDesc.value
+  };
+  if(editIndex!==null){
+    projects[editIndex]=data;
+    showToast('Updated');
+  } else {
+    projects.push(data);
+    showToast('Added');
+  }
+  localStorage.setItem('projects', JSON.stringify(projects));
+  renderProjects();
+  modal.classList.add('hidden');
+};
+
+// PROJECT DETAILS MODAL
+function openDetails(i){
+  const p = projects[i];
+  document.getElementById('detailsImage').src = images[i];
+  document.getElementById('detailsTitle').textContent = p.title;
+  document.getElementById('detailsDesc').textContent = p.description;
+  document.getElementById('detailsTech').textContent = "Tech: " + p.tech;
+  document.getElementById('detailsLive').href = p.live;
+  document.getElementById('detailsGit').href = p.github;
+  document.getElementById('detailsModal').classList.remove('hidden');
+}
+
+function closeDetails(){
+  document.getElementById('detailsModal').classList.add('hidden');
+}
+
+// HERO IMAGE MODAL FUNCTIONS
+function openHeroModal() {
+  document.getElementById('heroFullImage').src = document.getElementById('heroImage').src;
+  document.getElementById('heroModal').classList.remove('hidden');
+}
+
+function closeHeroModal() {
+  document.getElementById('heroModal').classList.add('hidden');
+}
+
+renderProjects();
+</script>
+
+</body>
+                                                                                                        </html>
