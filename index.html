@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ifeanyi Nnamani | Smork♿💫</title>
+<title>Ifeanyi Nnamani| Smork♿💫</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -42,6 +42,7 @@ body{
   opacity:0;
   transform:translateY(20px);
   transition:0.3s;
+  font-weight:500;
 }
 .toast.show{ opacity:1; transform:translateY(0); }
 
@@ -58,22 +59,18 @@ img{ cursor:pointer; }
 
 <!-- HERO -->
 <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
-
 <img id="heroImg" src="assets/hero.jpg"
 class="w-36 h-36 rounded-full mb-4 border-2 border-blue-600 shadow-xl"
 onclick="openHero()">
 
 <h1 class="text-4xl md:text-6xl font-extrabold">Ifeanyi Nnamani</h1>
-
 <p class="text-2xl text-blue-400 font-bold mt-2">Smork♿💫</p>
-
 <p class="text-lg mt-3 text-gray-400">Software Engineer / Frontend Developer</p>
 
 <div class="flex gap-4 mt-6">
 <a href="#projects" class="glass px-6 py-3">VIEW WORK</a>
 <a href="#contact" class="glass px-6 py-3">CONTACT</a>
 </div>
-
 </section>
 
 <!-- HERO MODAL -->
@@ -86,26 +83,25 @@ onclick="openHero()">
 <section class="py-20 text-center px-6 max-w-3xl mx-auto">
 <h2 class="text-3xl font-bold text-blue-400 mb-6">About</h2>
 <p class="text-gray-400 leading-relaxed text-base md:text-lg">
-I am a passionate Software Engineer focused on building modern, responsive, and high-performance web applications.
-I specialize in crafting clean user interfaces with smooth interactions, ensuring every product delivers both functionality and a premium user experience.
-
-My work is centered around frontend development, where I bring ideas to life using technologies like HTML, CSS, JavaScript, and modern frameworks.
-I pay strong attention to detail, design consistency, and performance optimization, creating applications that feel fast, intuitive, and visually polished.
-
+I am a passionate Software Engineer focused on building modern, responsive, and high-performance web applications. 
+I specialize in crafting clean user interfaces with smooth interactions, ensuring every product delivers both functionality and a premium user experience. 
+My work is centered around frontend development using technologies like HTML, CSS, JavaScript, and modern frameworks.
 Beyond just writing code, I approach every project with a problem-solving mindset — turning complex ideas into simple, user-friendly solutions.
 </p>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects" class="py-20 px-6 max-w-6xl mx-auto">
-<h2 class="text-3xl font-bold text-blue-400 mb-6">Projects</h2>
+<div class="flex justify-between items-center mb-6">
+  <h2 class="text-3xl font-bold text-blue-400">Projects</h2>
+  <button id="addProjectBtn" class="glass px-4 py-2 font-medium hover:bg-blue-800">Add Project</button>
+</div>
 <div id="projectsContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="py-20 text-center">
 <h2 class="text-3xl font-bold text-blue-400 mb-6">Contact</h2>
-
 <div class="flex justify-center gap-6 text-2xl flex-wrap">
 <a href="https://instagram.com/smork_frmdaeast"><i class="fab fa-instagram"></i></a>
 <a href="https://facebook.com/share/1DhHJPTRXL/"><i class="fab fa-facebook"></i></a>
@@ -116,32 +112,44 @@ Beyond just writing code, I approach every project with a problem-solving mindse
 </div>
 </section>
 
-<!-- PROJECT MODAL -->
+<!-- DETAILS MODAL -->
 <div id="detailsModal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center">
 <div class="glass p-6 max-w-lg w-full relative">
-
 <button onclick="closeDetails()" class="absolute top-3 right-4">✖</button>
-
 <img id="dImg" class="w-full h-48 object-cover rounded mb-4">
-
 <h3 id="dTitle" class="text-xl font-bold text-blue-400"></h3>
-
 <p id="dDesc" class="mt-2 text-gray-300"></p>
-
 <p id="dTech" class="mt-2 text-blue-300"></p>
-
 <div class="flex gap-3 mt-4">
 <a id="dLive" target="_blank" class="glass px-3 py-1">Live</a>
 <a id="dGit" target="_blank" class="glass px-3 py-1">GitHub</a>
 </div>
+</div>
+</div>
 
+<!-- ADD PROJECT MODAL -->
+<div id="projectModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+<div class="glass p-6 w-full max-w-md">
+<h3 class="text-2xl font-bold mb-4 text-blue-400">Add Project</h3>
+<form id="projectForm" class="flex flex-col gap-3">
+  <input id="projectTitle" placeholder="Title" class="p-2 bg-gray-800 rounded text-white">
+  <input id="projectTech" placeholder="Tech Stack" class="p-2 bg-gray-800 rounded text-white">
+  <input id="projectLive" placeholder="Live Link" class="p-2 bg-gray-800 rounded text-white">
+  <input id="projectGit" placeholder="GitHub Link" class="p-2 bg-gray-800 rounded text-white">
+  <textarea id="projectDesc" placeholder="Description" class="p-2 bg-gray-800 rounded text-white"></textarea>
+  <div class="flex justify-end gap-2 mt-2">
+    <button type="button" id="closeProjectModal" class="glass px-3 py-1 hover:bg-blue-800">Cancel</button>
+    <button type="submit" class="glass px-3 py-1 hover:bg-blue-800">Save</button>
+  </div>
+</form>
 </div>
 </div>
+
+<div id="toast" class="toast">Done</div>
 
 <script>
-
-/* PROJECT DATA WITH IMAGES INSIDE */
-const projects = [
+/* PROJECT DATA */
+let projects = [
 {
 title:"FINTECH DASHBOARD",
 image:"assets/smorks-paydom-platform.jpg",
@@ -184,21 +192,20 @@ description:"Functional calculator"
 }
 ];
 
-/* RENDER */
+/* RENDER PROJECTS */
 const container = document.getElementById("projectsContainer");
-
-function render(){
+function renderProjects(){
 container.innerHTML = projects.map((p,i)=>`
-<div class="glass p-4" onclick="openDetails(${i})">
+<div class="glass p-4 cursor-pointer hover:scale-105 transition" onclick="openDetails(${i})">
 <img src="${p.image}" class="h-40 w-full object-cover rounded mb-2">
 <h3 class="text-lg font-bold text-blue-400">${p.title}</h3>
 <p>${p.description}</p>
 </div>
 `).join("");
 }
-render();
+renderProjects();
 
-/* DETAILS */
+/* DETAILS MODAL */
 function openDetails(i){
 document.getElementById("dImg").src = projects[i].image;
 document.getElementById("dTitle").textContent = projects[i].title;
@@ -206,29 +213,45 @@ document.getElementById("dDesc").textContent = projects[i].description;
 document.getElementById("dTech").textContent = "Tech: " + projects[i].tech;
 document.getElementById("dLive").href = projects[i].live;
 document.getElementById("dGit").href = projects[i].github;
-
 document.getElementById("detailsModal").classList.remove("hidden");
 }
+function closeDetails(){ document.getElementById("detailsModal").classList.add("hidden"); }
 
-function closeDetails(){
-document.getElementById("detailsModal").classList.add("hidden");
-}
-
-/* HERO */
-function openHero(){
-document.getElementById("heroFull").src = document.getElementById("heroImg").src;
-document.getElementById("heroModal").classList.remove("hidden");
-}
-function closeHero(){
-document.getElementById("heroModal").classList.add("hidden");
-}
+/* HERO MODAL */
+function openHero(){ document.getElementById("heroFull").src = document.getElementById("heroImg").src; document.getElementById("heroModal").classList.remove("hidden"); }
+function closeHero(){ document.getElementById("heroModal").classList.add("hidden"); }
 
 /* THEME */
-function toggleTheme(){
-document.body.classList.toggle("light");
-}
+function toggleTheme(){ document.body.classList.toggle("light"); }
 
+/* TOAST */
+function showToast(msg){ let t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2000); }
+
+/* ADD PROJECT MODAL */
+const addBtn = document.getElementById("addProjectBtn");
+const projectModal = document.getElementById("projectModal");
+const closeProjectBtn = document.getElementById("closeProjectModal");
+const projectForm = document.getElementById("projectForm");
+
+addBtn.onclick = ()=>{ projectForm.reset(); projectModal.classList.remove("hidden"); };
+closeProjectBtn.onclick = ()=> projectModal.classList.add("hidden");
+
+projectForm.onsubmit = (e)=>{
+e.preventDefault();
+let newProject={
+title: document.getElementById("projectTitle").value,
+tech: document.getElementById("projectTech").value,
+live: document.getElementById("projectLive").value,
+github: document.getElementById("projectGit").value,
+description: document.getElementById("projectDesc").value,
+image:"assets/placeholder.jpg" // temporary placeholder image
+};
+projects.push(newProject);
+renderProjects();
+showToast("Project Added!");
+projectModal.classList.add("hidden");
+};
 </script>
 
 </body>
-                                                       </html>
+  </html>
