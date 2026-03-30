@@ -12,7 +12,7 @@
 
 <style>
 body{
-  font-family: 'Inter', sans-serif;
+  font-family:'Inter',sans-serif;
   background:#0f172a;
   color:white;
   transition:0.3s;
@@ -22,7 +22,6 @@ body{
   color:#111;
 }
 
-/* glass */
 .glass{
   background:rgba(255,255,255,0.05);
   backdrop-filter:blur(12px);
@@ -33,7 +32,6 @@ body{
 }
 .glass:hover{ transform:translateY(-5px); }
 
-/* toast */
 .toast{
   position:fixed;
   bottom:20px;
@@ -53,7 +51,7 @@ img{ cursor:pointer; }
 
 <body>
 
-<!-- THEME TOGGLE -->
+<!-- THEME -->
 <button onclick="toggleTheme()" class="fixed top-4 right-4 glass px-4 py-2">
 <i class="fas fa-moon"></i>
 </button>
@@ -65,7 +63,7 @@ img{ cursor:pointer; }
 class="w-36 h-36 rounded-full mb-4 border-2 border-blue-600 shadow-xl"
 onclick="openHero()">
 
-<h1 class="text-4xl md:text-6xl font-extrabold">Ifeanyi Nnamani. E</h1>
+<h1 class="text-4xl md:text-6xl font-extrabold">Ifeanyi Nnamani</h1>
 
 <p class="text-2xl text-blue-400 font-bold mt-2">Smork♿💫</p>
 
@@ -88,23 +86,19 @@ onclick="openHero()">
 <section class="py-20 text-center px-6 max-w-3xl mx-auto">
 <h2 class="text-3xl font-bold text-blue-400 mb-6">About</h2>
 <p class="text-gray-400 leading-relaxed text-base md:text-lg">
-I am a passionate Software Engineer focused on building modern, responsive, and high-performance web applications. 
+I am a passionate Software Engineer focused on building modern, responsive, and high-performance web applications.
 I specialize in crafting clean user interfaces with smooth interactions, ensuring every product delivers both functionality and a premium user experience.
 
-My work is centered around frontend development, where I bring ideas to life using technologies like HTML, CSS, JavaScript, and modern frameworks. 
+My work is centered around frontend development, where I bring ideas to life using technologies like HTML, CSS, JavaScript, and modern frameworks.
 I pay strong attention to detail, design consistency, and performance optimization, creating applications that feel fast, intuitive, and visually polished.
 
-Beyond just writing code, I approach every project with a problem-solving mindset — turning complex ideas into simple, user-friendly solutions. 
-I am constantly improving my skills, exploring new technologies, and pushing myself to build products that stand out at a professional level.
+Beyond just writing code, I approach every project with a problem-solving mindset — turning complex ideas into simple, user-friendly solutions.
 </p>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects" class="py-20 px-6 max-w-6xl mx-auto">
-<div class="flex justify-between mb-6">
-<h2 class="text-3xl font-bold text-blue-400">Projects</h2>
-</div>
-
+<h2 class="text-3xl font-bold text-blue-400 mb-6">Projects</h2>
 <div id="projectsContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 </section>
 
@@ -144,23 +138,13 @@ I am constantly improving my skills, exploring new technologies, and pushing mys
 </div>
 </div>
 
-<div id="toast" class="toast">Done</div>
-
 <script>
 
-/* IMAGES */
-const images = [
-"assets/smork-ecommerce-app.jpg",
-"assets/smork-tech-calculator.jpg",
-"assets/smorks-paydom-platform.jpg",
-"assets/unique-homes-landing-page.jpg",
-"assets/smart-appointment-booking.jpg"
-];
-
-/* PROJECT DATA */
+/* PROJECT DATA WITH IMAGES INSIDE */
 const projects = [
 {
 title:"FINTECH DASHBOARD",
+image:"assets/smorks-paydom-platform.jpg",
 tech:"HTML, Tailwind CSS, JavaScript",
 live:"https://smorkfrmdaeast.github.io/fintech-dashboard/login.html",
 github:"https://github.com/Smorkfrmdaeast/fintech-dashboard",
@@ -168,6 +152,7 @@ description:"Modern fintech dashboard UI"
 },
 {
 title:"APPOINTMENT PLATFORM",
+image:"assets/smart-appointment-booking.jpg",
 tech:"HTML, CSS, JavaScript",
 live:"https://smorkfrmdaeast.github.io/appointment-booking-platform/",
 github:"https://github.com/Smorkfrmdaeast/appointment-booking-platform",
@@ -175,13 +160,15 @@ description:"Smart booking system"
 },
 {
 title:"E-COMMERCE STORE",
+image:"assets/smork-ecommerce-app.jpg",
 tech:"HTML, CSS, JavaScript",
-live:"https://smorkfrmdaeast.github.io/smork-ecommerce-store./",
+live:"https://smorkfrmdaeast.github.io/smork-ecommerce-store/",
 github:"https://github.com/Smorkfrmdaeast/smork-ecommerce-store",
 description:"Online store UI"
 },
 {
 title:"UNIQUE HOMES",
+image:"assets/unique-homes-landing-page.jpg",
 tech:"HTML, Tailwind CSS",
 live:"https://smorkfrmdaeast.github.io/unique-homes-website/",
 github:"https://github.com/Smorkfrmdaeast/unique-homes-website",
@@ -189,6 +176,7 @@ description:"Perfume landing page"
 },
 {
 title:"TECH CALCULATOR",
+image:"assets/smork-tech-calculator.jpg",
 tech:"HTML, CSS, JavaScript",
 live:"https://smorkfrmdaeast.github.io/smorks-tech-calculator/",
 github:"https://github.com/Smorkfrmdaeast/smorks-tech-calculator",
@@ -202,7 +190,7 @@ const container = document.getElementById("projectsContainer");
 function render(){
 container.innerHTML = projects.map((p,i)=>`
 <div class="glass p-4" onclick="openDetails(${i})">
-<img src="${images[i]}" class="h-40 w-full object-cover rounded mb-2">
+<img src="${p.image}" class="h-40 w-full object-cover rounded mb-2">
 <h3 class="text-lg font-bold text-blue-400">${p.title}</h3>
 <p>${p.description}</p>
 </div>
@@ -212,7 +200,7 @@ render();
 
 /* DETAILS */
 function openDetails(i){
-document.getElementById("dImg").src = images[i];
+document.getElementById("dImg").src = projects[i].image;
 document.getElementById("dTitle").textContent = projects[i].title;
 document.getElementById("dDesc").textContent = projects[i].description;
 document.getElementById("dTech").textContent = "Tech: " + projects[i].tech;
@@ -226,12 +214,11 @@ function closeDetails(){
 document.getElementById("detailsModal").classList.add("hidden");
 }
 
-/* HERO MODAL */
+/* HERO */
 function openHero(){
 document.getElementById("heroFull").src = document.getElementById("heroImg").src;
 document.getElementById("heroModal").classList.remove("hidden");
 }
-
 function closeHero(){
 document.getElementById("heroModal").classList.add("hidden");
 }
@@ -241,15 +228,7 @@ function toggleTheme(){
 document.body.classList.toggle("light");
 }
 
-/* TOAST */
-function toast(msg){
-let t = document.getElementById("toast");
-t.textContent = msg;
-t.classList.add("show");
-setTimeout(()=>t.classList.remove("show"),2000);
-}
-
 </script>
 
 </body>
-      </html>
+                                                       </html>
