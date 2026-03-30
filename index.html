@@ -4,11 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ifeanyi Nnamani Emmanuel | SMORK ♿💫 Portfolio CMS</title>
+  
+  <!-- Tailwind & Font Awesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: sans-serif; background-color: #0f172a; color: white; }
+    body { font-family: 'Poppins', sans-serif; transition: background 0.3s, color 0.3s; }
 
     /* Glass effect */
     .glass {
@@ -38,18 +44,21 @@
     }
     .toast.show { opacity: 1; transform: translateY(0); }
 
-    /* Cursor for clickable images */
+    /* Cursor pointer */
     .cursor-pointer { cursor: pointer; }
   </style>
 </head>
+<body class="bg-gray-900 text-white">
 
-<body>
+<!-- DARK/LIGHT THEME TOGGLE -->
+<div class="fixed top-4 right-4 z-50">
+  <button id="themeToggle" class="glass px-3 py-1 text-blue-400 font-semibold hover:bg-blue-800">Toggle Theme</button>
+</div>
 
 <!-- HERO -->
 <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
   <img id="heroImage" src="assets/hero.jpg" class="w-36 h-36 rounded-full mb-4 object-cover border-2 border-blue-700 shadow-2xl cursor-pointer" onclick="openHeroModal()">
-  <h1 class="text-5xl md:text-6xl font-extrabold mb-2">Ifeanyi Nnamani Emmanuel</h1>
-  <p class="text-2xl md:text-3xl mb-4 text-blue-400 font-bold">aka SMORK ♿💫</p>
+  <h1 class="text-5xl md:text-6xl font-extrabold mb-2 text-blue-400">SMORK ♿💫</h1>
   <p class="text-xl md:text-2xl mb-6 text-gray-300">Software Engineer / Frontend Developer</p>
   <div class="flex gap-4">
     <a href="#projects" class="glass px-6 py-3 font-medium hover:bg-blue-800">VIEW WORK</a>
@@ -67,7 +76,7 @@
 <section class="py-20 px-6 max-w-4xl mx-auto text-center">
   <h2 class="text-4xl font-bold mb-6 text-blue-400">About Me</h2>
   <p class="mb-6 text-gray-300 leading-relaxed">
-    I build modern, responsive, and interactive web applications with a strong focus on <strong>UI/UX</strong>, performance, and polished high-end design. My work represents professional craftsmanship with clean, sleek, and functional interfaces.
+    I build modern, responsive, and interactive web applications with a strong focus on <strong>UI/UX</strong>, performance, and polished high-end design.
   </p>
   <div class="flex flex-wrap justify-center gap-4">
     <span class="glass px-4 py-2 font-medium">HTML</span>
@@ -119,41 +128,10 @@
   </div>
 </section>
 
-<!-- ADD PROJECT MODAL -->
-<div id="projectModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
-  <div class="glass p-6 w-full max-w-md">
-    <h3 id="modalTitle" class="text-2xl mb-4 text-blue-400 font-bold">Add Project</h3>
-    <form id="projectForm" class="flex flex-col gap-3">
-      <input id="projectTitle" placeholder="Title" class="p-2 bg-gray-800 rounded">
-      <input id="projectTech" placeholder="Tech" class="p-2 bg-gray-800 rounded">
-      <input id="projectLive" placeholder="Live Link" class="p-2 bg-gray-800 rounded">
-      <input id="projectGit" placeholder="GitHub Link" class="p-2 bg-gray-800 rounded">
-      <textarea id="projectDesc" placeholder="Description" class="p-2 bg-gray-800 rounded"></textarea>
-      <div class="flex justify-end gap-2">
-        <button type="button" id="closeModal" class="glass px-3 py-1 hover:bg-blue-800">Cancel</button>
-        <button type="submit" class="glass px-3 py-1 hover:bg-blue-800">Save</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- PROJECT DETAILS MODAL -->
-<div id="detailsModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50">
-  <div class="glass p-6 max-w-lg w-full relative">
-    <button onclick="closeDetails()" class="absolute top-2 right-3 text-xl text-gray-200 hover:text-red-500">✖</button>
-    <img id="detailsImage" class="w-full h-52 object-cover rounded mb-4">
-    <h3 id="detailsTitle" class="text-2xl font-bold mb-2 text-blue-400"></h3>
-    <p id="detailsDesc" class="mb-2 text-gray-300"></p>
-    <p id="detailsTech" class="text-sm mb-4 text-gray-400"></p>
-    <div class="flex gap-3">
-      <a id="detailsLive" target="_blank" class="glass px-3 py-1 hover:bg-blue-800">Live</a>
-      <a id="detailsGit" target="_blank" class="glass px-3 py-1 hover:bg-blue-800">GitHub</a>
-    </div>
-  </div>
-</div>
-
+<!-- TOAST -->
 <div id="toast" class="toast">Done</div>
 
+<!-- JS -->
 <script>
 const images = [
   "assets/smork-ecommerce-app.jpg",
@@ -164,50 +142,15 @@ const images = [
 ];
 
 let projects = [
-  {
-    title: "SMORK FINTECH DASHBOARD",
-    tech: "HTML, Tailwind CSS, JavaScript",
-    live: "https://smorkfrmdaeast.github.io/fintech-dashboard/login.html",
-    github: "https://github.com/Smorkfrmdaeast/fintech-dashboard",
-    description: "A modern fintech dashboard interface featuring authentication UI, clean layout, and responsive design. Built to simulate real-world financial platforms with smooth user experience."
-  },
-  {
-    title: "SMART APPOINTMENT BOOKING PLATFORM",
-    tech: "HTML, CSS, JavaScript",
-    live: "https://smorkfrmdaeast.github.io/appointment-booking-platform/",
-    github: "https://github.com/Smorkfrmdaeast/appointment-booking-platform",
-    description: "A smart scheduling platform that allows users to book and manage appointments efficiently. Designed with a clean interface and mobile-friendly responsiveness."
-  },
-  {
-    title: "SMORK E-COMMERCE STORE",
-    tech: "HTML, CSS, JavaScript",
-    live: "https://smorkfrmdaeast.github.io/smork-ecommerce-store/",
-    github: "https://github.com/Smorkfrmdaeast/smork-ecommerce-store",
-    description: "An interactive e-commerce web application with product listings, cart system, and responsive UI. Focused on delivering a smooth shopping experience."
-  },
-  {
-    title: "UNIQUE HOMES LANDING PAGE",
-    tech: "HTML, Tailwind CSS",
-    live: "https://smorkfrmdaeast.github.io/unique-homes-website/",
-    github: "https://github.com/Smorkfrmdaeast/unique-homes-website",
-    description: "A modern landing page for a perfume and air freshener diffuser brand, showcasing products, features, and premium UI design. Fully responsive with smooth scrolling and engaging layout."
-  },
-  {
-    title: "SMORK TECH CALCULATOR",
-    tech: "HTML, CSS, JavaScript",
-    live: "https://smorkfrmdaeast.github.io/smorks-tech-calculator/",
-    github: "https://github.com/Smorkfrmdaeast/smorks-tech-calculator",
-    description: "A functional calculator web app with a clean UI and responsive design, built to handle real-time calculations efficiently."
-  }
+  { title: "SMORK FINTECH DASHBOARD", tech: "HTML, Tailwind CSS, JavaScript", live: "https://smorkfrmdaeast.github.io/fintech-dashboard/login.html", github: "https://github.com/Smorkfrmdaeast/fintech-dashboard", description: "A modern fintech dashboard interface featuring authentication UI, clean layout, and responsive design." },
+  { title: "SMART APPOINTMENT BOOKING PLATFORM", tech: "HTML, CSS, JavaScript", live: "https://smorkfrmdaeast.github.io/appointment-booking-platform/", github: "https://github.com/Smorkfrmdaeast/appointment-booking-platform", description: "A smart scheduling platform that allows users to book and manage appointments efficiently." },
+  { title: "SMORK E-COMMERCE STORE", tech: "HTML, CSS, JavaScript", live: "https://smorkfrmdaeast.github.io/smork-ecommerce-store/", github: "https://github.com/Smorkfrmdaeast/smork-ecommerce-store", description: "An interactive e-commerce web application with product listings, cart system, and responsive UI." },
+  { title: "UNIQUE HOMES LANDING PAGE", tech: "HTML, Tailwind CSS", live: "https://smorkfrmdaeast.github.io/unique-homes-website/", github: "https://github.com/Smorkfrmdaeast/unique-homes-website", description: "A modern landing page showcasing products and premium UI design." },
+  { title: "SMORK TECH CALCULATOR", tech: "HTML, CSS, JavaScript", live: "https://smorkfrmdaeast.github.io/smorks-tech-calculator/", github: "https://github.com/Smorkfrmdaeast/smorks-tech-calculator", description: "A functional calculator web app with clean UI and responsive design." }
 ];
 
-let editIndex = null;
 const container = document.getElementById('projectsContainer');
-const modal = document.getElementById('projectModal');
-const form = document.getElementById('projectForm');
 const toast = document.getElementById('toast');
-const addProjectBtn = document.getElementById('addProjectBtn');
-const closeModal = document.getElementById('closeModal');
 
 function showToast(msg){
   toast.textContent = msg;
@@ -225,63 +168,24 @@ function renderProjects(){
   `).join('');
 }
 
-addProjectBtn.onclick = ()=>{
-  editIndex=null;
-  form.reset();
-  modal.classList.remove('hidden');
+// HERO MODAL
+function openHeroModal() { document.getElementById('heroModal').classList.remove('hidden'); }
+function closeHeroModal() { document.getElementById('heroModal').classList.add('hidden'); }
+
+// THEME TOGGLE
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.onclick = () => {
+  document.body.classList.toggle('bg-white');
+  document.body.classList.toggle('text-gray-900');
+  document.querySelectorAll('.glass').forEach(g => {
+    g.classList.toggle('bg-gray-100');
+    g.classList.toggle('bg-gray-800');
+    g.classList.toggle('text-gray-900');
+    g.classList.toggle('text-white');
+  });
 };
-
-closeModal.onclick = ()=> modal.classList.add('hidden');
-
-form.onsubmit = (e)=>{
-  e.preventDefault();
-  let data = {
-    title: projectTitle.value,
-    tech: projectTech.value,
-    live: projectLive.value,
-    github: projectGit.value,
-    description: projectDesc.value
-  };
-  if(editIndex!==null){
-    projects[editIndex]=data;
-    showToast('Updated');
-  } else {
-    projects.push(data);
-    showToast('Added');
-  }
-  localStorage.setItem('projects', JSON.stringify(projects));
-  renderProjects();
-  modal.classList.add('hidden');
-};
-
-// PROJECT DETAILS MODAL
-function openDetails(i){
-  const p = projects[i];
-  document.getElementById('detailsImage').src = images[i];
-  document.getElementById('detailsTitle').textContent = p.title;
-  document.getElementById('detailsDesc').textContent = p.description;
-  document.getElementById('detailsTech').textContent = "Tech: " + p.tech;
-  document.getElementById('detailsLive').href = p.live;
-  document.getElementById('detailsGit').href = p.github;
-  document.getElementById('detailsModal').classList.remove('hidden');
-}
-
-function closeDetails(){
-  document.getElementById('detailsModal').classList.add('hidden');
-}
-
-// HERO IMAGE MODAL FUNCTIONS
-function openHeroModal() {
-  document.getElementById('heroFullImage').src = document.getElementById('heroImage').src;
-  document.getElementById('heroModal').classList.remove('hidden');
-}
-
-function closeHeroModal() {
-  document.getElementById('heroModal').classList.add('hidden');
-}
 
 renderProjects();
 </script>
-
 </body>
-                                                                                                        </html>
+  </html>
