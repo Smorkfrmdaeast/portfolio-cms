@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -36,6 +36,7 @@
       transition: 0.3s;
       font-weight: 500;
       letter-spacing: 0.5px;
+      z-index: 1000;
     }
     .toast.show { opacity: 1; transform: translateY(0); }
 
@@ -75,189 +76,134 @@
 </head>
 <body>
 
-<!-- THEME TOGGLE BUTTON -->
-<div class="theme-toggle" onclick="toggleTheme()">Toggle Theme</div>
+  <!-- THEME TOGGLE BUTTON -->
+  <div class="theme-toggle" onclick="toggleTheme()">Toggle Theme</div>
 
-<!-- HERO -->
-<section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
-  <img id="heroImage" src="assets/hero.jpg" class="w-36 h-36 rounded-full mb-4 object-cover border-2 border-blue-700 shadow-2xl cursor-pointer" onclick="openHeroModal()">
-  <h1 class="text-5xl md:text-6xl mb-2">
-    <span class="font-extrabold">Ifeanyi Nnamani Emmanuel</span> <span class="text-blue-400 font-semibold">| smork ♿💫</span>
-  </h1>
-  <p class="text-xl md:text-2xl mb-6 text-gray-300">Software Engineer / Frontend Developer</p>
-  <div class="flex gap-4">
-    <a href="#projects" class="glass px-6 py-3 font-medium hover:bg-blue-800">VIEW WORK</a>
-    <a href="#contact" class="glass px-6 py-3 font-medium hover:bg-blue-800">CONTACT</a>
-  </div>
-</section>
-
-<!-- HERO IMAGE MODAL -->
-<div id="heroModal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
-  <span onclick="closeHeroModal()" class="absolute top-4 right-6 text-white text-3xl cursor-pointer hover:text-red-500">✖</span>
-  <img id="heroFullImage" src="assets/hero.jpg" class="max-w-full max-h-full rounded shadow-2xl">
-</div>
-
-<!-- ABOUT -->
-<section class="py-20 px-6 max-w-4xl mx-auto text-center">
-  <h2 class="text-4xl font-bold mb-6 text-blue-400">About Me</h2>
-  <p class="mb-6 text-gray-300 leading-relaxed">
-    I build modern, responsive, and interactive web applications with a strong focus on <strong>UI/UX</strong>, performance, and polished high-end design. My work represents professional craftsmanship with clean, sleek, and functional interfaces.
-  </p>
-  <div class="flex flex-wrap justify-center gap-4">
-    <span class="glass px-4 py-2 font-medium">HTML</span>
-    <span class="glass px-4 py-2 font-medium">CSS</span>
-    <span class="glass px-4 py-2 font-medium">JavaScript</span>
-    <span class="glass px-4 py-2 font-medium">React</span>
-    <span class="glass px-4 py-2 font-medium">Tailwind</span>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="py-20 px-6 max-w-6xl mx-auto">
-  <div class="flex justify-between items-center mb-6">
-    <h2 class="text-4xl font-bold text-blue-400">Projects</h2>
-    <button id="addProjectBtn" class="glass px-4 py-2 font-medium hover:bg-blue-800">Add Project</button>
-  </div>
-  <div id="projectsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-</section>
-
-<!-- SKILLS -->
-<section class="py-20 px-6 max-w-4xl mx-auto text-center">
-  <h2 class="text-4xl font-bold mb-6 text-blue-400">Skills</h2>
-  <div class="grid md:grid-cols-3 gap-6">
-    <div class="glass p-4">
-      <h3 class="font-bold mb-2 text-lg text-gray-200">Frontend</h3>
-      <p class="text-gray-300">HTML, CSS, JS, React</p>
+  <!-- HERO -->
+  <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+    <img id="heroImage" src="assets/hero.jpg" class="w-36 h-36 rounded-full mb-4 object-cover border-2 border-blue-700 shadow-2xl cursor-pointer" onclick="openHeroModal()">
+    <h1 class="text-5xl md:text-6xl mb-2">
+      <span class="font-extrabold">Ifeanyi Nnamani Emmanuel</span> <span class="text-blue-400 font-semibold">| smork ♿💫</span>
+    </h1>
+    <p class="text-xl md:text-2xl mb-6 text-gray-300">Software Engineer / Frontend Developer</p>
+    <div class="flex gap-4">
+      <a href="#projects" class="glass px-6 py-3 font-medium hover:bg-blue-800">VIEW WORK</a>
+      <a href="#contact" class="glass px-6 py-3 font-medium hover:bg-blue-800">CONTACT</a>
     </div>
-    <div class="glass p-4">
-      <h3 class="font-bold mb-2 text-lg text-gray-200">Backend</h3>
-      <p class="text-gray-300">Node.js, Express</p>
-    </div>
-    <div class="glass p-4">
-      <h3 class="font-bold mb-2 text-lg text-gray-200">Tools</h3>
-      <p class="text-gray-300">Git, VSCode, Figma</p>
-    </div>
+  </section>
+
+  <!-- HERO IMAGE MODAL -->
+  <div id="heroModal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
+    <span onclick="closeHeroModal()" class="absolute top-4 right-6 text-white text-3xl cursor-pointer hover:text-red-500">✖</span>
+    <img id="heroFullImage" src="assets/hero.jpg" class="max-w-full max-h-full rounded shadow-2xl">
   </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact" class="py-20 px-6 max-w-4xl mx-auto text-center">
-  <h2 class="text-4xl font-bold mb-6 text-blue-400">Contact</h2>
-  <div class="flex justify-center gap-6 text-2xl flex-wrap">
-    <a href="https://www.instagram.com/smork_frmdaeast" target="_blank" class="hover:text-pink-500"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/share/1DhHJPTRXL/" target="_blank" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a>
-    <a href="https://www.linkedin.com/in/smorkfrmdaeast" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
-    <a href="https://github.com/Smorkfrmdaeast" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="mailto:ifeanyinuels32@gmail.com"><i class="fas fa-envelope"></i></a>
-    <a href="https://wa.me/2349019071679" target="_blank" class="hover:text-green-500"><i class="fab fa-whatsapp"></i></a>
-  </div>
-</section>
+  <!-- ABOUT -->
+  <section class="py-20 px-6 max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6 text-blue-400">About Me</h2>
+    <p class="mb-6 text-gray-300 leading-relaxed">
+      I build modern, responsive, and interactive web applications with a strong focus on <strong>UI/UX</strong>, performance, and polished high-end design. My work represents professional craftsmanship with clean, sleek, and functional interfaces.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <span class="glass px-4 py-2 font-medium">HTML</span>
+      <span class="glass px-4 py-2 font-medium">CSS</span>
+      <span class="glass px-4 py-2 font-medium">JavaScript</span>
+      <span class="glass px-4 py-2 font-medium">React</span>
+      <span class="glass px-4 py-2 font-medium">Tailwind</span>
+    </div>
+  </section>
 
-<!-- Modals, Toasts, Scripts (remain unchanged) -->
-<!-- ... KEEP ALL MODAL AND JS FROM ORIGINAL ... -->
+  <!-- PROJECTS -->
+  <section id="projects" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-4xl font-bold text-blue-400">Projects</h2>
+    </div>
+    <div id="projectsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </section>
 
-<script>
-  // THEME TOGGLE
-  function toggleTheme() {
-    document.body.classList.toggle('light-theme');
-  }
-
-  // Existing project and modal scripts remain the same
-  const images = [
-    "assets/smork-ecommerce-app.jpg",
-    "assets/smork-tech-calculator.jpg",
-    "assets/smorks-paydom-platform.jpg",
-    "assets/unique-homes-landing-page.jpg",
-    "assets/smart-appointment-booking.jpg"
-  ];
-
-  let projects = [
-    {title:"SMORK FINTECH DASHBOARD", tech:"HTML, Tailwind CSS, JavaScript", live:"https://smorkfrmdaeast.github.io/fintech-dashboard/login.html", github:"https://github.com/Smorkfrmdaeast/fintech-dashboard", description:"A modern fintech dashboard interface featuring authentication UI, clean layout, and responsive design. Built to simulate real-world financial platforms with smooth user experience."},
-    {title:"SMART APPOINTMENT BOOKING PLATFORM", tech:"HTML, CSS, JavaScript", live:"https://smorkfrmdaeast.github.io/appointment-booking-platform/", github:"https://github.com/Smorkfrmdaeast/appointment-booking-platform", description:"A smart scheduling platform that allows users to book and manage appointments efficiently. Designed with a clean interface and mobile-friendly responsiveness."},
-    {title:"SMORK E-COMMERCE STORE", tech:"HTML, CSS, JavaScript", live:"https://smorkfrmdaeast.github.io/smork-ecommerce-store/", github:"https://github.com/Smorkfrmdaeast/smork-ecommerce-store", description:"An interactive e-commerce web application with product listings, cart system, and responsive UI. Focused on delivering a smooth shopping experience."},
-    {title:"UNIQUE HOMES LANDING PAGE", tech:"HTML, Tailwind CSS", live:"https://smorkfrmdaeast.github.io/unique-homes-website/", github:"https://github.com/Smorkfrmdaeast/unique-homes-website", description:"A modern landing page for a perfume and air freshener diffuser brand, showcasing products, features, and premium UI design. Fully responsive with smooth scrolling and engaging layout."},
-    {title:"SMORK TECH CALCULATOR", tech:"HTML, CSS, JavaScript", live:"https://smorkfrmdaeast.github.io/smorks-tech-calculator/", github:"https://github.com/Smorkfrmdaeast/smorks-tech-calculator", description:"A functional calculator web app with a clean UI and responsive design, built to handle real-time calculations efficiently."}
-  ];
-
-  let editIndex = null;
-  const container = document.getElementById('projectsContainer');
-  const modal = document.getElementById('projectModal');
-  const form = document.getElementById('projectForm');
-  const toast = document.getElementById('toast');
-  const addProjectBtn = document.getElementById('addProjectBtn');
-  const closeModal = document.getElementById('closeModal');
-
-  function showToast(msg){
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(()=>toast.classList.remove('show'),2000);
-  }
-
-  function renderProjects(){
-    container.innerHTML = projects.map((p,i)=>`
-      <div class="glass p-4 hover:scale-105 transition cursor-pointer" onclick="openDetails(${i})">
-        <img src="${images[i]}" class="w-full h-40 object-cover rounded mb-3">
-        <h3 class="font-bold text-xl text-blue-400">${p.title}</h3>
-        <p class="text-gray-300">${p.description.substring(0,60)}...</p>
+  <!-- SKILLS -->
+  <section class="py-20 px-6 max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6 text-blue-400">Skills</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass p-4">
+        <h3 class="font-bold mb-2 text-lg text-gray-200">Frontend</h3>
+        <p class="text-gray-300">HTML, CSS, JS, React</p>
       </div>
-    `).join('');
-  }
+      <div class="glass p-4">
+        <h3 class="font-bold mb-2 text-lg text-gray-200">Backend</h3>
+        <p class="text-gray-300">Node.js, Express</p>
+      </div>
+      <div class="glass p-4">
+        <h3 class="font-bold mb-2 text-lg text-gray-200">Tools</h3>
+        <p class="text-gray-300">Git, VSCode, Figma</p>
+      </div>
+    </div>
+  </section>
 
-  addProjectBtn.onclick = ()=>{
-    editIndex=null;
-    form.reset();
-    modal.classList.remove('hidden');
-  };
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 px-6 max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6 text-blue-400">Contact</h2>
+    <div class="flex justify-center gap-6 text-2xl flex-wrap">
+      <a href="https://www.instagram.com/smork_frmdaeast" target="_blank" class="hover:text-pink-500"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1DhHJPTRXL/" target="_blank" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.linkedin.com/in/smorkfrmdaeast" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/Smorkfrmdaeast" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="mailto:ifeanyinuels32@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://wa.me/2349019071679" target="_blank" class="hover:text-green-500"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </section>
 
-  closeModal.onclick = ()=> modal.classList.add('hidden');
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
 
-  form.onsubmit = (e)=>{
-    e.preventDefault();
-    let data = {
-      title: projectTitle.value,
-      tech: projectTech.value,
-      live: projectLive.value,
-      github: projectGit.value,
-      description: projectDesc.value
-    };
-    if(editIndex!==null){
-      projects[editIndex]=data;
-      showToast('Updated');
-    } else {
-      projects.push(data);
-      showToast('Added');
-    }
-    localStorage.setItem('projects', JSON.stringify(projects));
-    renderProjects();
-    modal.classList.add('hidden');
-  };
+  <!-- SCRIPT -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const images = [
+        "assets/smork-ecommerce-app.jpg",
+        "assets/smork-tech-calculator.jpg",
+        "assets/smorks-paydom-platform.jpg",
+        "assets/unique-homes-landing-page.jpg",
+        "assets/smart-appointment-booking.jpg"
+      ];
 
-  function openDetails(i){
-    const p = projects[i];
-    document.getElementById('detailsImage').src = images[i];
-    document.getElementById('detailsTitle').textContent = p.title;
-    document.getElementById('detailsDesc').textContent = p.description;
-    document.getElementById('detailsTech').textContent = "Tech: " + p.tech;
-    document.getElementById('detailsLive').href = p.live;
-    document.getElementById('detailsGit').href = p.github;
-    document.getElementById('detailsModal').classList.remove('hidden');
-  }
+      const projects = [
+        {title:"SMORK FINTECH DASHBOARD", tech:"HTML, Tailwind CSS, JavaScript", live:"https://smorkfrmdaeast.github.io/fintech-dashboard/login.html", github:"https://github.com/Smorkfrmdaeast/fintech-dashboard", description:"A modern fintech dashboard interface featuring authentication UI, clean layout, and responsive design. Built to simulate real-world financial platforms with smooth user experience."},
+        {title:"SMART APPOINTMENT BOOKING PLATFORM", tech:"HTML, CSS, JavaScript", live:"https://smorkfrmdaeast.github.io/appointment-booking-platform/", github:"https://github.com/Smorkfrmdaeast/appointment-booking-platform", description:"A smart scheduling platform that allows users to book and manage appointments efficiently. Designed with a clean interface and mobile-friendly responsiveness."},
+        {title:"SMORK E-COMMERCE STORE", tech:"HTML, CSS, JavaScript", live:"https://smorkfrmdaeast.github.io/smork-ecommerce-store/", github:"https://github.com/Smorkfrmdaeast/smork-ecommerce-store", description:"An interactive e-commerce web application with product listings, cart system, and responsive UI. Focused on delivering a smooth shopping experience."},
+        {title:"UNIQUE HOMES LANDING PAGE", tech:"HTML, Tailwind CSS", live:"https://smorkfrmdaeast.github.io/unique-homes-website/", github:"https://github.com/Smorkfrmdaeast/unique-homes-website", description:"A modern landing page for a perfume and air freshener diffuser brand, showcasing products, features, and premium UI design. Fully responsive with smooth scrolling and engaging layout."},
+        {title:"SMORK TECH CALCULATOR", tech:"HTML, CSS, JavaScript", live:"https://smorkfrmdaeast.github.io/smorks-tech-calculator/", github:"https://github.com/Smorkfrmdaeast/smorks-tech-calculator", description:"A functional calculator web app with a clean UI and responsive design, built to handle real-time calculations efficiently."}
+      ];
 
-  function closeDetails(){
-    document.getElementById('detailsModal').classList.add('hidden');
-  }
+      const container = document.getElementById('projectsContainer');
+      const toast = document.getElementById('toast');
 
-  function openHeroModal() {
-    document.getElementById('heroFullImage').src = document.getElementById('heroImage').src;
-    document.getElementById('heroModal').classList.remove('hidden');
-  }
+      function showToast(msg){
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(()=>toast.classList.remove('show'),2000);
+      }
 
-  function closeHeroModal() {
-    document.getElementById('heroModal').classList.add('hidden');
-  }
+      function renderProjects(){
+        container.innerHTML = projects.map((p,i)=>`
+          <div class="glass p-4 hover:scale-105 transition cursor-pointer">
+            <img src="${images[i]}" class="w-full h-40 object-cover rounded mb-3">
+            <h3 class="font-bold text-xl text-blue-400">${p.title}</h3>
+            <p class="text-gray-300">${p.description.substring(0,60)}...</p>
+          </div>
+        `).join('');
+      }
 
-  renderProjects();
-</script>
+      renderProjects();
+
+      // THEME TOGGLE
+      window.toggleTheme = () => document.body.classList.toggle('light-theme');
+
+      // HERO MODAL
+      window.openHeroModal = () => document.getElementById('heroModal').classList.remove('hidden');
+      window.closeHeroModal = () => document.getElementById('heroModal').classList.add('hidden');
+    });
+  </script>
 
 </body>
-  </html>
+</html>
