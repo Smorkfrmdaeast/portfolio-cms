@@ -1,51 +1,35 @@
-SMORK ♿💫 Portfolio CMS
-A modern, interactive, and fully responsive portfolio web application showcasing projects, skills, and contact info — designed for web developers, tech enthusiasts, and creatives.
+# Ifeanyi Nnamani | Smork♿💫 Portfolio CMS
 
-🌟 Features
-Dynamic Projects Section – Add and showcase projects with images, tech stack, live demo, and GitHub links.
-Interactive Modals – Click projects to see full details.
-Hero Section – Clickable profile image with full-screen modal.
-About Me Section – Readable, detailed tech journey.
-Dark & Light Mode – Toggle themes for modern user experience.
-Glassmorphism UI – Stylish glass effect on cards and modals.
-Responsive Design – Optimized for mobile, tablet, and desktop.
+A modern, responsive portfolio CMS web application showcasing projects, skills, and contact information for software engineer and frontend developer Ifeanyi Nnamani (Smork). Rewritten in **React 19**, **TypeScript**, **Vite**, and **Tailwind CSS**.
 
-🛠 Tech Stack
-Frontend: HTML, CSS, JavaScript
-Styling: Tailwind CSS
-Fonts: Google Fonts (Inter)
-Icons: Font Awesome
+## 🌟 Features
 
-🚀 Getting Started
+- **Hero Profile & Fullscreen Modal**: Interactive profile photo with high-res modal viewer and fast anchor navigation.
+- **Dynamic Projects Showcase**: Project cards featuring live links, GitHub repositories, tech stack tags, and glassmorphism styling.
+- **Interactive Project Details Modal**: Detailed project preview overlay with responsive backdrop blur and escape key shortcuts.
+- **Add Project CMS Capability**: Add new portfolio items on the fly with title, tech stack, live link, GitHub link, description, and custom/placeholder images.
+- **Local Persistence**: Projects and theme choices persist smoothly in local storage.
+- **Dark & Light Mode**: Fluid theme toggle with glassmorphism adjustments.
+- **Contact Channels**: Quick links to Instagram, Facebook, LinkedIn, GitHub, Email, and WhatsApp.
+- **Toast Notifications**: Smooth visual feedback for project actions.
 
-Clone the repository:
-git clone https://github.com/Smorkfrmdaeast/portfolio-cms.git
+## 🛠 Tech Stack
 
-Navigate to the folder:
-https://github.com/Smorkfrmdaeast/portfolio-cms.git
-Open index.html in your browser, or host with GitHub Pages to see the live demo.
+- **Framework**: React 19 + Vite
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4 + Glassmorphism Design System
+- **Icons**: Font Awesome 6.5 & Lucide Icons
+- **Typography**: Google Fonts (Inter)
 
-🖼 Adding Projects
-Click Add Project in the Projects section.
-Fill in: title, tech stack, live demo link, GitHub repo link, and description.
-Save – project appears immediately.
+## 🚀 Development
 
-portfolio-cms/
-├─ assets/                 # Images for hero & projects
-├─ index.html              # Main HTML file
-├─ style.css               # Optional custom CSS
-└─ script.js               # JS for interactivity
+```bash
+# Install dependencies
+npm install
 
-🔮 Future Improvements
-Authentication for secure project editing
-CMS backend for dynamic content
-Filtering and search for projects
-Animations for smoother UX
+# Run development server on port 3000
+npm run dev
 
-📬 Connect with Me
-Instagram: https://instagram.com/smork_frmdaeast
-Facebook: https://facebook.com/share/1DhHJPTRXL/
-LinkedIn: https://linkedin.com/in/smorkfrmdaeast
-GitHub: https://github.com/Smorkfrmdaeast
-Email: ifeanyinuels32@gmail.com
-WhatsApp: https://wa.me/2349019071679
+# Build for production
+npm run build
+```

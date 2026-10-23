@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0f172a;
+    color: #ffffff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.light {
+    background-color: #f9fafb;
+    color: #111827;
+  }
+}
+
+/* Glassmorphism styling matching the original design */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass:hover {
+  transform: translateY(-5px);
+}
+
+/* Glass styling in light mode */
+body.light .glass {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  color: #111827;
+}
+
+body.light .text-gray-400 {
+  color: #4b5563;
+}
+
+body.light .text-gray-300 {
+  color: #374151;
+}
+
+body.light .bg-gray-800 {
+  background-color: #f3f4f6;
+  color: #111827;
+  border: 1px solid #d1d5db;
+}
+
+body.light .bg-gray-900 {
+  background-color: #ffffff;
+  color: #111827;
+}
+
+/* Toast styling */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1e40af;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  z-index: 9999;
+  box-shadow: 0 8px 24px rgba(30, 64, 175, 0.4);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html {
+  scroll-behavior: smooth;
+}

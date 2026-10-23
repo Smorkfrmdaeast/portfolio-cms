@@ -1,0 +1,8 @@
+{
+  "name": "Ifeanyi Nnamani | Smork♿💫 Portfolio CMS",
+  "description": "Modern, interactive portfolio CMS application showcasing projects, tech stack, and contact links for software engineer Ifeanyi Nnamani (Smork). Built with React, TypeScript, and Tailwind CSS.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
