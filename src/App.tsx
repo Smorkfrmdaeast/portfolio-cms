@@ -1,142 +1,127 @@
-import React, { useState, useEffect } from 'react';
-import { Project, Theme } from './types';
-import { initialProjects } from './data/initialProjects';
-import { ThemeToggle } from './components/ThemeToggle';
-import { Hero } from './components/Hero';
-import { HeroModal } from './components/HeroModal';
-import { About } from './components/About';
-import { Projects } from './components/Projects';
-import { ProjectDetailsModal } from './components/ProjectDetailsModal';
-import { AddProjectModal } from './components/AddProjectModal';
-import { Contact } from './components/Contact';
-import { Toast } from './components/Toast';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useProjects } from './hooks/useProjects';
+import { useSettings } from './hooks/useSettings';
+import { useTheme } from './hooks/useTheme';
+import { useToast } from './hooks/useToast';
+import { useAuth } from './hooks/useAuth';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { ToastContainer } from './components/ToastContainer';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
-const PROJECTS_STORAGE_KEY = 'smork_portfolio_projects';
-const THEME_STORAGE_KEY = 'smork_portfolio_theme';
+// Routes
+import { HomeRoute } from './routes/HomeRoute';
+import { WorkRoute } from './routes/WorkRoute';
+import { CaseStudyRoute } from './routes/CaseStudyRoute';
+import { ResumeRoute } from './routes/ResumeRoute';
+import { AdminRoute } from './routes/AdminRoute';
+import { NotFoundRoute } from './routes/NotFoundRoute';
 
 export const App: React.FC = () => {
-  // Theme state
-  const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem(THEME_STORAGE_KEY);
-    return saved === 'light' ? 'light' : 'dark';
-  });
+  const { theme, toggleTheme } = useTheme();
+  const { isAuthenticated } = useAuth();
+  const { toasts, addToast, removeToast } = useToast();
+  const { settings, updateSettings } = useSettings();
 
-  // Projects state
-  const [projects, setProjects] = useState<Project[]>(() => {
-    try {
-      const saved = localStorage.getItem(PROJECTS_STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
-        }
-      }
-    } catch {
-      // Fallback on parse failure
-    }
-    return initialProjects;
-  });
-
-  // Modals state
-  const [isHeroModalOpen, setIsHeroModalOpen] = useState(false);
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  // Toast state
-  const [toastMessage, setToastMessage] = useState('');
-  const [showToast, setShowToast] = useState(false);
-
-  // Apply theme to body
-  useEffect(() => {
-    if (theme === 'light') {
-      document.body.classList.add('light');
-    } else {
-      document.body.classList.remove('light');
-    }
-    localStorage.setItem(THEME_STORAGE_KEY, theme);
-  }, [theme]);
-
-  // Persist projects to localStorage
-  useEffect(() => {
-    localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(projects));
-  }, [projects]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
-
-  const triggerToast = (msg: string) => {
-    setToastMessage(msg);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 2200);
-  };
-
-  const handleAddProject = (newProject: Project) => {
-    setProjects((prev) => [newProject, ...prev]);
-    triggerToast('Project Added!');
-  };
-
-  const handleResetProjects = () => {
-    setProjects(initialProjects);
-    triggerToast('Projects reset to default!');
-  };
+  // Load all projects including drafts for admin, or published for public
+  const {
+    projects,
+    loading: projectsLoading,
+    createProject,
+    updateProject,
+    deleteProject,
+    reorderProjects,
+    duplicateProject,
+    resetProjects,
+  } = useProjects({ includeDrafts: true });
 
   return (
-    <div className="min-h-screen selection:bg-blue-600 selection:text-white">
-      {/* Theme Toggle Button */}
-      <ThemeToggle theme={theme} onToggle={toggleTheme} />
+    <ErrorBoundary>
+      <BrowserRouter>
+        <div className="min-h-screen flex flex-col bg-[#F4F1EA] dark:bg-[#0F1115] text-[#16181D] dark:text-[#ECE8DF] transition-colors duration-200">
+          {/* Global Header */}
+          <Header
+            theme={theme}
+            onToggleTheme={toggleTheme}
+            isAdmin={isAuthenticated}
+          />
 
-      {/* Hero Section */}
-      <Hero onOpenHeroModal={() => setIsHeroModalOpen(true)} />
+          {/* Main Content Area */}
+          <main id="main-content" className="flex-1">
+            {projectsLoading ? (
+              <div className="max-w-6xl mx-auto px-6 py-24 text-center">
+                <span className="font-mono text-xs uppercase tracking-wider text-[#D9532B]">
+                  Loading...
+                </span>
+                <div className="mt-4 flex justify-center">
+                  <div className="w-6 h-6 border-2 border-[#D9532B] border-t-transparent rounded-full animate-spin" />
+                </div>
+              </div>
+            ) : (
+              <Routes>
+                {/* Home */}
+                <Route
+                  path="/"
+                  element={<HomeRoute projects={projects} settings={settings} />}
+                />
 
-      {/* About Section */}
-      <About />
+                {/* Work Archive */}
+                <Route
+                  path="/work"
+                  element={<WorkRoute projects={projects} />}
+                />
 
-      {/* Projects Section */}
-      <Projects
-        projects={projects}
-        onOpenAddModal={() => setIsAddModalOpen(true)}
-        onSelectProject={(project) => setSelectedProject(project)}
-      />
+                {/* Case Study */}
+                <Route
+                  path="/work/:slug"
+                  element={
+                    <CaseStudyRoute
+                      projects={projects}
+                      isAdmin={isAuthenticated}
+                    />
+                  }
+                />
 
-      {/* Quick Reset option if user modified project list */}
-      {projects.length !== initialProjects.length && (
-        <div className="text-center pb-6">
-          <button
-            onClick={handleResetProjects}
-            className="text-xs text-gray-500 hover:text-blue-400 underline cursor-pointer"
-          >
-            Reset projects to default list
-          </button>
+                {/* Resume / CV */}
+                <Route
+                  path="/resume"
+                  element={<ResumeRoute settings={settings} />}
+                />
+
+                {/* Admin CMS */}
+                <Route
+                  path="/admin/*"
+                  element={
+                    <AdminRoute
+                      projects={projects}
+                      settings={settings}
+                      onCreateProject={createProject}
+                      onUpdateProject={updateProject}
+                      onDeleteProject={deleteProject}
+                      onDuplicateProject={duplicateProject}
+                      onReorderProjects={reorderProjects}
+                      onUpdateSettings={updateSettings}
+                      onResetDefaults={resetProjects}
+                      onShowToast={addToast}
+                    />
+                  }
+                />
+
+                {/* 404 */}
+                <Route path="*" element={<NotFoundRoute />} />
+              </Routes>
+            )}
+          </main>
+
+          {/* Global Footer on public routes */}
+          <Footer settings={settings} />
+
+          {/* Global Toast Container */}
+          <ToastContainer toasts={toasts} onDismiss={removeToast} />
         </div>
-      )}
-
-      {/* Contact Section */}
-      <Contact />
-
-      {/* Modals */}
-      <HeroModal
-        isOpen={isHeroModalOpen}
-        onClose={() => setIsHeroModalOpen(false)}
-        imageSrc="/assets/hero.jpg"
-      />
-
-      <ProjectDetailsModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
-
-      <AddProjectModal
-        isOpen={isAddModalOpen}
-        onClose={() => setIsAddModalOpen(false)}
-        onAddProject={handleAddProject}
-      />
-
-      {/* Toast Notification */}
-      <Toast message={toastMessage} show={showToast} />
-    </div>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 };
 

@@ -3,17 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ifeanyi Nnamani | Smork♿💫 Portfolio CMS</title>
-  <meta name="description" content="Modern, interactive portfolio CMS application showcasing projects, tech stack, and contact links for software engineer Ifeanyi Nnamani (Smork). Built with React, TypeScript, and Tailwind CSS." />
-  <meta property="og:title" content="Ifeanyi Nnamani | Smork♿💫 Portfolio CMS" />
-  <meta property="og:description" content="Modern, interactive portfolio CMS application showcasing projects, tech stack, and contact links for software engineer Ifeanyi Nnamani (Smork). Built with React, TypeScript, and Tailwind CSS." />
+  <title>Ifeanyi Nnamani — Software Engineer & Frontend Developer</title>
+  <meta name="description" content="Personal portfolio and case studies of Ifeanyi Nnamani (Smork), software engineer specializing in clean, high-performance web applications and responsive interfaces." />
+  <meta property="og:title" content="Ifeanyi Nnamani — Software Engineer & Frontend Developer" />
+  <meta property="og:description" content="Portfolio and case studies of Ifeanyi Nnamani (Smork). Hand-crafted web applications, clean architecture, and responsive interfaces." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/hero.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/jpeg" href="/assets/hero.jpg" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Google Fonts: Fraunces (Display serif), Inter (Body sans), JetBrains Mono (Technical/Tags) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Structured Data: JSON-LD Person Schema with verified details -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ifeanyi Nnamani",
+    "alternateName": "Smork",
+    "jobTitle": "Software Engineer & Frontend Developer",
+    "email": "mailto:ifeanyinuels32@gmail.com",
+    "telephone": "+2349019071679",
+    "image": "/assets/hero.jpg",
+    "sameAs": [
+      "https://github.com/Smorkfrmdaeast",
+      "https://linkedin.com/in/smorkfrmdaeast",
+      "https://instagram.com/smork_frmdaeast",
+      "https://facebook.com/share/1DhHJPTRXL/",
+      "https://wa.me/2349019071679"
+    ]
+  }
+  </script>
+  <script>
+    try {
+      const saved = localStorage.getItem('ifeanyi_portfolio_theme');
+      if (saved === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.body && document.body.classList.add('dark');
+      }
+    } catch (e) {}
+  </script>
 </head>
-<body class="min-h-screen bg-[#0f172a] text-white transition-colors duration-300 font-['Inter',sans-serif]">
+<body class="antialiased selection:bg-[#D9532B] selection:text-white transition-colors duration-200">
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

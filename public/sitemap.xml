@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ifeanyinnamani.dev/</loc>
+    <priority>1.0</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://ifeanyinnamani.dev/work</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://ifeanyinnamani.dev/work/fintech-dashboard</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ifeanyinnamani.dev/work/appointment-booking-platform</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ifeanyinnamani.dev/work/smork-ecommerce-store</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ifeanyinnamani.dev/work/unique-homes-website</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ifeanyinnamani.dev/work/smorks-tech-calculator</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>

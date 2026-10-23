@@ -1,0 +1,34 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.email in ['ifeanyinuels42@gmail.com', 'ifeanyinuels32@gmail.com'] ||
+        request.auth.token.admin == true
+      );
+    }
+
+    // Project cover images and gallery images
+    match /projects/{projectId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin()
+        && request.resource.size < 5 * 1024 * 1024 // 5MB limit
+        && request.resource.contentType.matches('image/.*');
+      allow delete: if isAdmin();
+    }
+
+    // Site settings assets (profile photo, resume PDF)
+    match /settings/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin()
+        && request.resource.size < 10 * 1024 * 1024 // 10MB limit for PDF / images
+        && (request.resource.contentType.matches('image/.*') || request.resource.contentType == 'application/pdf');
+      allow delete: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper function to check if the user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper function to check if user is an allowlisted admin
+    // Validates against an admins document or admin token claim
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.email in ['ifeanyinuels42@gmail.com', 'ifeanyinuels32@gmail.com'] ||
+        request.auth.token.admin == true ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    // Projects collection
+    match /projects/{projectId} {
+      // Anyone can read published projects. Admins can read all (including drafts).
+      allow read: if isAdmin() || (resource.data.status == 'published');
+      
+      // Only authenticated admins can create, update, or delete projects
+      allow create: if isAdmin()
+        && request.resource.data.title is string
+        && request.resource.data.title.size() > 0
+        && request.resource.data.title.size() <= 150
+        && request.resource.data.slug is string
+        && request.resource.data.slug.size() > 0
+        && request.resource.data.status in ['draft', 'published'];
+
+      allow update: if isAdmin()
+        && request.resource.data.title is string
+        && request.resource.data.title.size() > 0
+        && request.resource.data.title.size() <= 150
+        && request.resource.data.status in ['draft', 'published'];
+
+      allow delete: if isAdmin();
+    }
+
+    // Settings document
+    match /settings/{settingId} {
+      // Public settings (bio, links, site config) are readable by anyone
+      allow read: if true;
+      // Only admins can update site settings
+      allow write: if isAdmin();
+    }
+
+    // Admins registry (read-only except by other admins)
+    match /admins/{adminId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+  }
+}
